@@ -11,7 +11,7 @@ git checkout master
 
 branch=$(git symbolic-ref --short -q HEAD)
 echo "检测到的branch是${branch}"
-if [[ ${branch}='master' ]]
+if [[ ${branch}=='master' ]]
 then
     echo "分支位于master，开始更新博客内容"
     rm -rf *
