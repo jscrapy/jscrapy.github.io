@@ -98,3 +98,47 @@ code {
   color: #a71d5d;
 }
 
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+td,th {
+  padding: 0
+}
+
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all
+}
+
+table th {
+  font-weight: bold
+}
+
+table th,table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd
+}
+
+table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8
+}
+
+body {
+  padding: 30px;
+  max-width: 858px;
+  margin: 0 auto;
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #333;
+  background-color: #fff
+}
