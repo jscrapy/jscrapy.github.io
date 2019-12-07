@@ -30,4 +30,5 @@ then
 	git push -f "https://${GITHUB_TK}@github.com/jscrapy/jscrapy.github.io.git" master
 else
     echo "分支切换不成功，更新失败"
+	exit 1
 fi
