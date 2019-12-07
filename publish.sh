@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 cd ..
+rm -rf jscrapy.github.io
+
 git clone https://github.com/jscrapy/jscrapy.github.io.git
 cd jscrapy.github.io
 
