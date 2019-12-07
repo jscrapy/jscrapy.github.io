@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title></title>
+    <link rel="stylesheet" href="css/code_hilighting.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="css/simple.css" type="text/css" media="screen" charset="utf-8">
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+
+
+</head>
+<body>
+
+<div class="toc">
+<ul>
+<li><a href="#_1">第一个博客标题</a><ul>
+<li><a href="#p2">p2</a></li>
+<li><a href="#p3">p3</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="_1">第一个博客标题</h1>
+<ul>
+<li>列表1</li>
+<li>列表2</li>
+</ul>
+<p><img alt="图片这是" src="f22.jpg" /></p>
+<blockquote>
+<p>缩进</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">source_dir</span> <span class="o">=</span>  <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dist_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">all_md_files</span> <span class="o">=</span> <span class="n">__all_md_files</span><span class="p">(</span><span class="n">source_dir</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{source_dir}</span><span class="s2">/../index.html&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+
+
+<p><img alt="网络图片" src="https://pic2.zhimg.com/80/v2-11cdb09371a33f4526a8a7f79e0e39f1_hd.jpg" /></p>
+<p>$$
+f(x)=\int_{i=0}^ng(x)
+$$</p>
+<h2 id="p2">p2</h2>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>我</td>
+<td>你</td>
+<td>他</td>
+</tr>
+<tr>
+<td>哈哈</td>
+<td>唐伯虎</td>
+<td>老虎</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="p3">p3</h2>
+<p>$$
+e^2
+$$</p>
+<p>我的公示是 $ e_i^n\sum{i=0}^n $</p>
+<p>$e^2$</p>
+
+
+
+</body>
+</html>
