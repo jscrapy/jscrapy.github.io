@@ -1,0 +1,8 @@
+{
+  "template_dir": "templates",
+  "theme": "default",
+  "theme_static": ["css", "image", "js"],
+  "markdown_extensions": ["markdown.extensions.extra","markdown.extensions.codehilite","markdown.extensions.toc"],
+  "page_size": 2,
+  "pagger_len": 5
+}
