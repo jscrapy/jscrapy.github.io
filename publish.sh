@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+cd ..
+git clone https://github.com/jscrapy/jscrapy.github.io.git
+cd jscrapy.github.io
+
 git config user.name "${U_NAME}"
 git config user.email "${U_EMAIL}"
 
