@@ -27,7 +27,7 @@ then
     rmdir ../html
 	
 	echo "准备提交的编译结果如下："
-	tree
+	ls -lt
 
 	git add .
 	git commit -m "Update blog"
