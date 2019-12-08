@@ -30,6 +30,7 @@ def __all_html_fiels_info(html_dir, page_size):
 def __all_md_files(md_source_dir, dist_dir):
     md_2_html_path = {}
     md_list = list(Path(md_source_dir).glob('**/*.md'))
+    md_list += list(Path(md_source_dir).glob('**/*.MD'))
     for md in md_list:
         html_file_name = f"{md.stem}.html"
         html_path = Path(f"{dist_dir}/{md.relative_to(source_dir).parent}/{html_file_name}")
@@ -47,6 +48,11 @@ def __copy_image(mdpath, source_dir, dist_dir, html):
             s = f"{Path(mdpath).parent}/{src}"
             d = f"{dist_dir}/{Path(mdpath).relative_to(source_dir).parent}/{src}"
             shutil.copy(s, d)
+
+
+def __copy_cname(source_dir, dist_dir):
+    file = f"{source_dir}/CNAME"
+    shutil.copy(file, dist_dir)
 
 
 def __copy_resource(template_theme_dir, theme_static, dist_dir):
@@ -110,3 +116,4 @@ if __name__ == "__main__":
 
         pagger_idx = range(start_page, end_page)
         index_template.stream(post=post_list, static_path=static_path, pagegger = pagegger_info, pagger_idx=pagger_idx, cur_page = idx).dump(list_page, encoding='utf-8')
+    __copy_cname(source_dir, dist_dir)
