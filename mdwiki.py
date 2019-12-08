@@ -1,4 +1,4 @@
-import json
+import json,re
 import shutil,math
 import sys, random
 from pathlib import Path
@@ -9,22 +9,33 @@ from jinja2 import Environment, FileSystemLoader
 
 
 def __all_html_fiels_info(html_dir, page_size):
+    """
+    在dist根目录的直接置顶
+    :param html_dir:
+    :param page_size:
+    :return:
+    """
     info = {} # 0:[(url, title, pub_date, read_cnt)]
 
     temp_info = []
+    top_fix = []  # 置顶文章
     html_list = list(Path(html_dir).glob('**/*.html'))
-    new_info = 0
+
     for html in html_list:
         relative_path = html.relative_to(html_dir)
         pub_date = "-".join([str(x) for x in relative_path.parts[:-1]])
-        temp_info.append((str(relative_path), relative_path.stem,  pub_date, random.randint(100, 9999)))
-        new_info = sorted(temp_info, key=lambda x: x[2],  reverse = True)
+        if pub_date=='':
+            top_fix.append((str(relative_path), relative_path.stem,  pub_date, random.randint(100, 9999)))
+        else:
+            temp_info.append((str(relative_path), relative_path.stem,  pub_date, random.randint(100, 9999)))
+
+    new_info = sorted(temp_info, key=lambda x: x[2],  reverse = True)
     post_len = len(new_info)
     page_cnt = math.ceil(post_len/page_size)
     for i in range(0, page_cnt):
         info[i] = new_info[i*page_size: min(i*page_size+page_size, post_len)]
 
-    return info
+    return info,top_fix
 
 
 def __all_md_files(md_source_dir, dist_dir):
@@ -33,20 +44,22 @@ def __all_md_files(md_source_dir, dist_dir):
     md_list += list(Path(md_source_dir).glob('**/*.MD'))
     for md in md_list:
         html_file_name = f"{md.stem}.html"
-        html_path = Path(f"{dist_dir}/{md.relative_to(source_dir).parent}/{html_file_name}")
+        p = str(md.relative_to(source_dir).parent)
+        p = re.sub("[\\\\/]", "-", p)
+        html_path = Path(f"{dist_dir}/{p}/{html_file_name}")
         Path(html_path.parent).mkdir(parents=True, exist_ok=True)
         md_2_html_path[str(md)] = str(html_path)
     return md_2_html_path
 
 
-def __copy_image(mdpath, source_dir, dist_dir, html):
+def __copy_image(mdpath, source_dir, dist_dir, html, html_file):
     soup = BeautifulSoup(html, "lxml")
     images = soup.find_all("img")
     for img in images:
         src = img.get("src")
         if src is not None and not src.startswith("http"):  # 说明是本地图片
             s = f"{Path(mdpath).parent}/{src}"
-            d = f"{dist_dir}/{Path(mdpath).relative_to(source_dir).parent}/{src}"
+            d = f"{dist_dir}/{Path(html_file).relative_to(dist_dir).parent}/{src}"
             shutil.copy(s, d)
 
 
@@ -65,7 +78,6 @@ def __copy_resource(template_theme_dir, theme_static, dist_dir):
 def __get_config(cfg_file="config.json"):
     with open(cfg_file, "r", encoding='utf-8') as f:
         txt = f.read()
-
     json_obj = json.loads(txt)
 
     return json_obj['template_dir'], json_obj['theme'], json_obj['theme_static'], json_obj['markdown_extensions'], json_obj['page_size'], json_obj['pagger_len']
@@ -87,16 +99,15 @@ if __name__ == "__main__":
         Path(Path(html_file).parent).mkdir(parents=True, exist_ok=True)
         with open(md, 'r', encoding='utf-8') as f:
             html = markdown.markdown(f.read(), extensions=markdown_extentions)
-            __copy_image(md, source_dir, dist_dir, html)
+            __copy_image(md, source_dir, dist_dir, html,html_file)
         static_path = "../"*(len(Path(html_file).relative_to(dist_dir).parents)-1)
         title = Path(html_file).stem
         detail_template.stream(post_content=html, static_path=static_path, title=title).dump(html_file, encoding='utf-8')
 
     __copy_resource(template_theme_dir, theme_static, dist_dir)
 
-
     #####  接下来生成博客列表和分页
-    pagegger_info = __all_html_fiels_info(dist_dir, page_size)
+    pagegger_info, top_fix = __all_html_fiels_info(dist_dir, page_size)
     total_page = len(pagegger_info.keys())
     for idx, post_list in pagegger_info.items():
         if idx==0:
@@ -115,5 +126,5 @@ if __name__ == "__main__":
             end_page = total_page
 
         pagger_idx = range(start_page, end_page)
-        index_template.stream(post=post_list, static_path=static_path, pagegger = pagegger_info, pagger_idx=pagger_idx, cur_page = idx).dump(list_page, encoding='utf-8')
+        index_template.stream(post=top_fix+post_list, static_path=static_path, pagegger = pagegger_info, pagger_idx=pagger_idx, cur_page = idx).dump(list_page, encoding='utf-8')
     __copy_cname(source_dir, dist_dir)

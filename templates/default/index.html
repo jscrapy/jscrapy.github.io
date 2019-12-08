@@ -10,7 +10,7 @@
 
             <tr>
                 <th><a href="{{ url }}" target="_blank">{{ title }}</a></th>
-                <th>{{ pub_date }}</th>
+                <th>{{ pub_date|default('置顶',True) }}</th>
                 <th>{{ read_cnt }}</th>
             </tr>
 
