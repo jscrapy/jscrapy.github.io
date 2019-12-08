@@ -15,3 +15,9 @@ div.pagger{
   width: 100%;
   text-align: center;
 }
+div.toc{
+  position: sticky;
+  float: right;
+  top: 2rem;
+  border-left: solid 1px #eee;
+}
