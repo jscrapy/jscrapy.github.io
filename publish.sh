@@ -10,7 +10,7 @@ git config user.name "${U_NAME}"
 git config user.email "${U_EMAIL}"
 
 git checkout source
-python hi_page.py  ./post   ./html
+python mdwiki.py  ./post   ./html
 mv html  ../
 rm -rf html
 

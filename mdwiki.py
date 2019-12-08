@@ -18,7 +18,7 @@ def __all_html_fiels_info(html_dir, page_size):
         relative_path = html.relative_to(html_dir)
         pub_date = "-".join([str(x) for x in relative_path.parts[:-1]])
         temp_info.append((str(relative_path), relative_path.stem,  pub_date, random.randint(100, 9999)))
-        new_info = sorted(temp_info, key=lambda x: x[3],  reverse = True)
+        new_info = sorted(temp_info, key=lambda x: x[2],  reverse = True)
     post_len = len(new_info)
     page_cnt = math.ceil(post_len/page_size)
     for i in range(0, page_cnt):
