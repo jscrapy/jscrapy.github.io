@@ -83,7 +83,8 @@ if __name__ == "__main__":
             html = markdown.markdown(f.read(), extensions=markdown_extentions)
             __copy_image(md, source_dir, dist_dir, html)
         static_path = "../"*(len(Path(html_file).relative_to(dist_dir).parents)-1)
-        detail_template.stream(post_content=html, static_path=static_path).dump(html_file, encoding='utf-8')
+        title = Path(html_file).stem
+        detail_template.stream(post_content=html, static_path=static_path, title=title).dump(html_file, encoding='utf-8')
 
     __copy_resource(template_theme_dir, theme_static, dist_dir)
 

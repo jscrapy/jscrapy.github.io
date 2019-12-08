@@ -10,9 +10,7 @@ git config user.name "${U_NAME}"
 git config user.email "${U_EMAIL}"
 
 git checkout source
-python mdwiki.py  ./post   ./html
-mv html  ../
-rm -rf html
+python mdwiki.py  ./post   ../html
 
 git checkout master
 
@@ -29,7 +27,7 @@ then
     rmdir ../html
 	
 	echo "准备提交的编译结果如下："
-	ls -lt
+	tree
 
 	git add .
 	git commit -m "Update blog"
