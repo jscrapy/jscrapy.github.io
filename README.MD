@@ -8,3 +8,4 @@
 - css https://github.com/wecatch/markdown-css
 - 分页 http://www.htmleaf.com/Demo/201707054612.html
 - 还有一种提交到git的方法 https://garryshield.github.io/2019/04/08/travis-ci/
+- https://www.yukunweb.com/2018/2/static-blog-based-on-flask/  参考学习

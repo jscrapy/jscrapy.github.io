@@ -1,4 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
+<h1 class="article_title">{{title}}</h1>
+<div class="tags_container">
+    {% if tags %}
+    <span>标签：</span>
+    {% for tag in tags %}
+    <a class="tag" href="tags/tag_{{tag}}.html">{{tag}}</a>
+    {% endfor %}
+    {% endif %}
+</div>
+
+
 {{ post_content }}
 {% endblock %}

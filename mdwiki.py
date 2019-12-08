@@ -95,14 +95,25 @@ if __name__ == "__main__":
     index_template = env.get_template('index.html')
 
     md_2_html = __all_md_files(source_dir, dist_dir)
+    tags_article = {}
     for md, html_file in md_2_html.items():
         Path(Path(html_file).parent).mkdir(parents=True, exist_ok=True)
         with open(md, 'r', encoding='utf-8') as f:
-            html = markdown.markdown(f.read(), extensions=markdown_extentions)
+            mdobj = markdown.Markdown(extensions=markdown_extentions)
+            html = mdobj.convert(f.read())
+            tags = mdobj.Meta.get('tags')
+            if tags:
+                for t in tags:
+                    articles = tags_article.get(t)
+                    if articles is None:
+                        tags_article[t] = []
+                    tags_article[t].append(Path(html_file).relative_to(dist_dir))
+
+
             __copy_image(md, source_dir, dist_dir, html,html_file)
         static_path = "../"*(len(Path(html_file).relative_to(dist_dir).parents)-1)
         title = Path(html_file).stem
-        detail_template.stream(post_content=html, static_path=static_path, title=title).dump(html_file, encoding='utf-8')
+        detail_template.stream(post_content=html, static_path=static_path, title=title, tags=tags).dump(html_file, encoding='utf-8')
 
     __copy_resource(template_theme_dir, theme_static, dist_dir)
 
@@ -128,3 +139,9 @@ if __name__ == "__main__":
         pagger_idx = range(start_page, end_page)
         index_template.stream(post=top_fix+post_list, static_path=static_path, pagegger = pagegger_info, pagger_idx=pagger_idx, cur_page = idx).dump(list_page, encoding='utf-8')
     __copy_cname(source_dir, dist_dir)
+
+    tag_template = env.get_template("tag.html")
+    Path(f"{dist_dir}/tags").mkdir(parents=True, exist_ok=True)
+    for tag, article_list in tags_article.items():
+        new_article_list = [(f'../{str(x)}', x.stem, str(x)[0:-len(x.name)]) for x in article_list] # url, title, pub_date
+        tag_template.stream(post=new_article_list, static_path="../", title=f"分类_{tag}").dump(f"{dist_dir}/tags/tag_{tag}.html", encoding='utf-8')
