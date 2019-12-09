@@ -30,9 +30,7 @@ then
 	tree
 
 	# 更新build 时间
-	build_time="`date`"
-	echo "构建时间是${build_time}"
-	sed  -i "s/(__build_time__)/${build_time}/" index.html
+	sed  -i "s/(__build_time__)/`date`/" index.html
 	git add .
 	git commit -m "Update blog"
 	git push -f "https://${GITHUB_TK}@github.com/jscrapy/jscrapy.github.io.git" master
