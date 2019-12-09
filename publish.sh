@@ -31,6 +31,7 @@ then
 
 	# 更新build 时间
 	sed  -i "s/(__build_time__)/`date '+%Y-%m-%d %H:%M:%S'`/" index.html
+	sed -i "/<\/body>/i  build: `date '+%Y-%m-%d %H:%M:%S'`/" index.html
 	git add .
 	git commit -m "Update blog"
 	git push -f "https://${GITHUB_TK}@github.com/jscrapy/jscrapy.github.io.git" master
