@@ -5,7 +5,7 @@
     {% if tags %}
     <span>标签：</span>
     {% for tag in tags %}
-    <a class="tag" href="tags/tag_{{tag}}.html">{{tag}}</a>
+    <a class="tag" href="{{static_path}}tags/tag_{{tag}}.html">{{tag}}</a>
     {% endfor %}
     {% endif %}
 </div>

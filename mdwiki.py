@@ -109,7 +109,6 @@ if __name__ == "__main__":
                         tags_article[t] = []
                     tags_article[t].append(Path(html_file).relative_to(dist_dir))
 
-
             __copy_image(md, source_dir, dist_dir, html,html_file)
         static_path = "../"*(len(Path(html_file).relative_to(dist_dir).parents)-1)
         title = Path(html_file).stem
