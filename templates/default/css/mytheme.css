@@ -21,7 +21,7 @@ div.toc{
   float: right;
   top: 2rem;
   border-left: solid 1px #eee;
-  /*margin-top: 20px;*/
+  margin-right: 5em;
 }
 h1.article_title{
     text-align: center;
