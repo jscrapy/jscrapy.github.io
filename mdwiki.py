@@ -102,6 +102,8 @@ if __name__ == "__main__":
             mdobj = markdown.Markdown(extensions=markdown_extentions)
             html = mdobj.convert(f.read())
             tags = mdobj.Meta.get('tags')
+            table_of_content = mdobj.toc
+            mdobj.toc=None
             if tags:
                 for t in tags:
                     articles = tags_article.get(t)
@@ -112,7 +114,7 @@ if __name__ == "__main__":
             __copy_image(md, source_dir, dist_dir, html,html_file)
         static_path = "../"*(len(Path(html_file).relative_to(dist_dir).parents)-1)
         title = Path(html_file).stem
-        detail_template.stream(post_content=html, static_path=static_path, title=title, tags=tags).dump(html_file, encoding='utf-8')
+        detail_template.stream(post_content=html, static_path=static_path, title=title, tags=tags, toc=table_of_content).dump(html_file, encoding='utf-8')
 
     __copy_resource(template_theme_dir, theme_static, dist_dir)
 

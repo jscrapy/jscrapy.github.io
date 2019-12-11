@@ -137,7 +137,7 @@ table tr:nth-child(2n) {
 
 body {
   padding: 30px;
-  max-width: 858px;
+  /*max-width: 858px;*/
   margin: 0 auto;
   font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   color: #333;
