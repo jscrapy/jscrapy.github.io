@@ -22,7 +22,7 @@ div.mytoc{
     position: -webkit-sticky;
     position: sticky;
     top: 4rem;
-    max-height: calc(100vh - 4rem);
+    /*max-height: calc(100vh - 4rem);*/
     overflow-y: visible;
 }
 h1.article_title{
