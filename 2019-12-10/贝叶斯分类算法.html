@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>贝叶斯分类算法</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/code_hilighting.css" type="text/css" media="screen"
+          charset="utf-8">
+    <link rel="stylesheet" href="../css/simple.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="../css/pages.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="../css/mytheme.css" type="text/css" media="screen" charset="utf-8">
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?ccd0a4c5305cc998d59f5c06a24a2b93";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="article_title">贝叶斯分类算法</h1>
+            <div class="tags_container">
+                
+                <span>标签：</span>
+                
+                <a class="tag" href="../tags/tag_贝叶斯分类.html">贝叶斯分类</a>
+                
+                <a class="tag" href="../tags/tag_贝叶斯公式.html">贝叶斯公式</a>
+                
+                <a class="tag" href="../tags/tag_朴素贝叶斯.html">朴素贝叶斯</a>
+                
+                
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="post_content col-lg-10 col-md-10 col-xs-10 col-md-10">
+            None
+
+        </div>
+        <div class="mytoc col-lg-2 col-md-2 col-xs-2 col-md-2">
+            <span class="toc_title">目录</span>
+            <div class="toc">
+<ul>
+<li><a href="#_1">朴素贝叶斯</a><ul>
+<li><a href="#_2">公式理解</a></li>
+<li><a href="#_3">场景化说明</a></li>
+<li><a href="#_4">贝叶斯公式推导</a><ul>
+<li><a href="#1">1）条件概率</a></li>
+<li><a href="#2">2）乘法公式</a></li>
+<li><a href="#3">3）全概率公式</a></li>
+<li><a href="#_5">综上推导</a></li>
+<li><a href="#_6">实际计算</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_7">半朴素贝叶斯</a></li>
+<li><a href="#_8">贝叶斯网络</a></li>
+<li><a href="#_9">参考文章</a></li>
+</ul>
+</div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container">
+    <div class="row text-center">
+	build:&nbsp;&nbsp; <a target='_blank' href='https://travis-ci.org/jscrapy/jscrapy.github.io'>__BUILD_VERSION__</a>
+	
+	</div>
+</div>
+
+</body>
+</html>
