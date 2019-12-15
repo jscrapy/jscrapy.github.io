@@ -14,3 +14,7 @@
 - https://www.yukunweb.com/2018/2/static-blog-based-on-flask/  参考学习
 - 数学公式解析 https://github.com/sJohnsonStoever/python-markdown-mathjax
 - bootcss 文档 https://code.z01.com/v4/layout/grid.html
+- https://juejin.im/post/5c0a27ee6fb9a049d05d8b70   mathjax
+- https://www.caam.rice.edu/~heinken/latex/symbols.pdf mathjax
+- [https://oysz2016.github.io/post/8611e6fb.html#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6](https://oysz2016.github.io/post/8611e6fb.html#关系运算符)  mathjax
+- 

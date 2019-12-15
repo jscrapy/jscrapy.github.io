@@ -52,7 +52,7 @@ def __all_md_files(md_source_dir, dist_dir):
     return md_2_html_path
 
 
-def __copy_image(mdpath, source_dir, dist_dir, html, html_file):
+def __process_image(mdpath, source_dir, dist_dir, html, html_file):
     soup = BeautifulSoup(html, "lxml")
     images = soup.find_all("img")
     for img in images:
@@ -83,12 +83,15 @@ def __get_config(cfg_file="config.json"):
     return json_obj['template_dir'], json_obj['theme'], json_obj['theme_static'], json_obj['markdown_extensions'], json_obj['page_size'], json_obj['pagger_len']
 
 
+def __tiny_png_b64(app_key):
+    pass
+
+
 if __name__ == "__main__":
     source_dir = sys.argv[1]
     dist_dir = sys.argv[2]
     shutil.rmtree(dist_dir, ignore_errors=True)
     template_dir, theme, theme_static, markdown_extentions, page_size, pagger_len = __get_config("config.json")
-
     template_theme_dir = f'{template_dir}/{theme}'
     env = Environment(loader=FileSystemLoader(template_theme_dir))
     detail_template = env.get_template('detail.html')
@@ -111,7 +114,7 @@ if __name__ == "__main__":
                         tags_article[t] = []
                     tags_article[t].append(Path(html_file).relative_to(dist_dir))
 
-            __copy_image(md, source_dir, dist_dir, html,html_file)
+            html = __process_image(md, source_dir, dist_dir, html, html_file)
         static_path = "../"*(len(Path(html_file).relative_to(dist_dir).parents)-1)
         title = Path(html_file).stem
         detail_template.stream(post_content=html, static_path=static_path, title=title, tags=tags, toc=table_of_content).dump(html_file, encoding='utf-8')
