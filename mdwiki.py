@@ -114,7 +114,7 @@ if __name__ == "__main__":
                         tags_article[t] = []
                     tags_article[t].append(Path(html_file).relative_to(dist_dir))
 
-            html = __process_image(md, source_dir, dist_dir, html, html_file)
+            __process_image(md, source_dir, dist_dir, html, html_file)
         static_path = "../"*(len(Path(html_file).relative_to(dist_dir).parents)-1)
         title = Path(html_file).stem
         detail_template.stream(post_content=html, static_path=static_path, title=title, tags=tags, toc=table_of_content).dump(html_file, encoding='utf-8')
