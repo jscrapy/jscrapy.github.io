@@ -60,6 +60,7 @@ def __process_image(mdpath, source_dir, dist_dir, html, html_file):
         if src is not None and not src.startswith("http"):  # 说明是本地图片
             s = f"{Path(mdpath).parent}/{src}"
             d = f"{dist_dir}/{Path(html_file).relative_to(dist_dir).parent}/{src}"
+            Path(Path(d).parent).mkdir(parents=True, exist_ok=True)
             shutil.copy(s, d)
 
 
